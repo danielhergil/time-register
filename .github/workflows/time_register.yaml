@@ -33,7 +33,7 @@ jobs:
     - name: Send email notification
       uses: cinotify/github-action@main
       with:
-        to: '${{ secrets.POL_USER }}'
+        to: ${{ secrets.POL_USER }}
         subject: 'Fichaje - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}'
         body: 'Fichaje realizado correctamente.'
         attachment: 'screenshot.png'
