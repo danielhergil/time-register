@@ -1,0 +1,39 @@
+name: Time register
+run-name: Time register
+on:
+  workflow_dispatch
+
+jobs:
+  time-register:
+    runs-on: ubuntu-latest
+    env:
+      POL_USER: ${{ secrets.POL_USER }}
+    steps:
+    - name: Checkout time-register
+      uses: actions/checkout@v4
+
+    - name: Use Node 18
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+
+    - name: Get current time
+      uses: josStorer/get-current-time@v2
+      id: current-time
+      with:
+        format: YYYYMMDD-HH
+        utcOffset: "+01:00"
+
+    - name: Send email notification
+      uses: cinotify/github-action@main
+      with:
+        to: 'daniel.hergil@gmail.com'
+        subject: 'Fichaje - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}'
+        body: 'Fichaje realizado correctamente.'
+        attachment: 'screenshot.png'
