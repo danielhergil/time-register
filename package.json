@@ -1,0 +1,25 @@
+{
+  "name": "time-register",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielhergil/time-register.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielhergil/time-register/issues"
+  },
+  "homepage": "https://github.com/danielhergil/time-register#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.28"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
