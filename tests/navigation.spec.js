@@ -1,13 +1,33 @@
 require('dotenv').config()
-const { test, expect } = require('@playwright/test');
+const { test } = require('@playwright/test');
+
+// Generate a random number between min (inclusive) and max (exclusive)
+function getRandomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+// Define the range
+const minLat = 40.43500;
+const maxLat = 40.43530;
+
+const minLon = -3.30160;
+const maxLon = -3.30190;
+
+// Generate the random number
+const randomNumberLatitude = getRandomNumber(minLat, maxLat);
+const randomNumberLongitude = getRandomNumber(minLon, maxLon);
+
+console.log(randomNumberLatitude.toFixed(5)); // Output with 5 decimal places
+console.log(randomNumberLongitude.toFixed(5)); // Output with 5 decimal places
 
 test.use({
     geolocation: {
-      latitude: 40.4351358,
-      longitude: -3.3017554,
+      latitude: parseFloat(randomNumberLatitude.toFixed(5)),
+      longitude: parseFloat(randomNumberLongitude.toFixed(5)),
     },
     permissions: ['geolocation'],
 });
+
 
 test('time register in', {tag: '@entrada',}, async ({ page }) => {
     
@@ -28,9 +48,9 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
     await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI0T0"]').click()
-    
-    // await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
 
+    await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
+    await page.waitForTimeout(10000)
     await page.screenshot({ path: 'screenshot.png' });
   });
 
@@ -54,7 +74,7 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
     await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI7T0"]').click()
 
-    // await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
-
+    await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
+    await page.waitForTimeout(10000)
     await page.screenshot({ path: 'screenshot.png' });
   });

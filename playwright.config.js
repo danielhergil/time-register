@@ -25,8 +25,8 @@ module.exports = defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
      // Context geolocation
-     geolocation: { longitude: 40.4351358, latitude: -3.3017554 },
-     permissions: ['geolocation'],
+    //  geolocation: { longitude: 40.4351358, latitude: -3.3017554 },
+    //  permissions: ['geolocation'],
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
