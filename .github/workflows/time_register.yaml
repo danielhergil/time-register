@@ -1,7 +1,10 @@
 name: Time register
 run-name: Time register
 on:
-  workflow_dispatch
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'entrada - salida'
 
 jobs:
   time-register:
@@ -21,7 +24,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npx playwright test --grep ${{ inputs.tag }}
 
     - name: Get current time
       uses: josStorer/get-current-time@v2
