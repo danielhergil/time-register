@@ -1,5 +1,5 @@
-name: Time register
-run-name: Time register
+name: Time register Sus
+run-name: Time register Sus
 on:
   workflow_dispatch:
     inputs:
@@ -10,7 +10,8 @@ jobs:
   time-register:
     runs-on: ubuntu-latest
     env:
-      POL_USER: ${{ secrets.POL_USER }}
+      POL_SUS_USER: ${{ secrets.POL_SUS_USER }}
+      POL_SUS_PASS: ${{ secrets.POL_SUS_PASS }}
     steps:
     - name: Checkout time-register
       uses: actions/checkout@v4
@@ -24,7 +25,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test navigation.spec.js --grep ${{ inputs.tag }}
+      run: npx playwright test sus.spec.js --grep ${{ inputs.tag }}
 
     - name: Get current time
       uses: josStorer/get-current-time@v2
@@ -36,7 +37,7 @@ jobs:
     - name: Send email notification
       uses: cinotify/github-action@main
       with:
-        to: '${{ secrets.POL_EMAIL }}'
+        to: '${{ secrets.POL_SUS_EMAIL }}'
         subject: 'Fichaje ${{ inputs.tag }} - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}'
         body: 'Fichaje realizado correctamente.'
         attachment: 'screenshot.png'
