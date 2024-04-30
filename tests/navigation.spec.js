@@ -39,15 +39,19 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     
     await page.locator('xpath=//div[@id="master_pnlContenido_btnAceptar_CD"]').click();
 
-    await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
-    await page.waitForTimeout(1000)
+    // await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
+    // await page.waitForTimeout(2000)
 
-    await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
+    // await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
+
+    await page.goto("https://empleadovillalbilla.eadministracion.es/PortalEmpleado/Personal/wfrFichaje.aspx")
 
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
     await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI0T0"]').click()
+
+    await page.waitForTimeout(2000)
 
     await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
     await page.waitForTimeout(10000)
@@ -64,15 +68,19 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     
     await page.locator('xpath=//div[@id="master_pnlContenido_btnAceptar_CD"]').click();
 
-    await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
-    await page.waitForTimeout(1000)
+    // await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
+    // await page.waitForTimeout(2000)
 
-    await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
+    // await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
+
+    await page.goto("https://empleadovillalbilla.eadministracion.es/PortalEmpleado/Personal/wfrFichaje.aspx")
 
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
     await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI7T0"]').click()
+
+    await page.waitForTimeout(2000)
 
     await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
     await page.waitForTimeout(10000)
