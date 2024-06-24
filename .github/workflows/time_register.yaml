@@ -44,24 +44,12 @@ jobs:
     - name: Send Whatsapp Msg Success
       uses: muhfaris/request-action@v1
       with:
-        url: https://api.callmebot.com/whatsapp.php
-        body: |
-          {
-            "phone": "${{ secrets.POL_PHONE }}",
-            "text": "Fichaje realizado correctamente",
-            "apikey": "${{ secrets.POL_WHATS_APIKEY }}"
-          }
+        url: https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_WHATS_APIKEY }}
         method: GET
     
     - name: Send Whatsapp Msg If Error
       if: failure()
       uses: muhfaris/request-action@v1
       with:
-        url: https://api.callmebot.com/whatsapp.php
-        body: |
-          {
-            "phone": "${{ secrets.POL_PHONE }}",
-            "text": "ERROR Fichaje",
-            "apikey": "${{ secrets.POL_WHATS_APIKEY }}"
-          }
+        url: https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_WHATS_APIKEY }}
         method: GET
