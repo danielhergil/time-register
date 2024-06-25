@@ -42,14 +42,14 @@ jobs:
         attachment: 'screenshot.png'
     
     - name: Send Whatsapp Msg Success
-      uses: muhfaris/request-action@v1
+      uses: fjogeleit/http-request-action@v1
       with:
-        url: https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_WHATS_APIKEY }}
-        method: GET
+        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_WHATS_APIKEY }}'
+        method: 'GET'
     
     - name: Send Whatsapp Msg If Error
       if: failure()
-      uses: muhfaris/request-action@v1
+      uses: fjogeleit/http-request-action@v1
       with:
-        url: https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_WHATS_APIKEY }}
-        method: GET
+        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_WHATS_APIKEY }}'
+        method: 'GET'
