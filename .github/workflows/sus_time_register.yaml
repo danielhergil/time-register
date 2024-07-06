@@ -41,3 +41,16 @@ jobs:
         subject: 'Fichaje ${{ inputs.tag }} - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}'
         body: 'Fichaje realizado correctamente.'
         attachment: 'screenshot.png'
+
+    - name: Send Whatsapp Msg Success
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}'
+        method: 'GET'
+    
+    - name: Send Whatsapp Msg If Error
+      if: failure()
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}'
+        method: 'GET'
