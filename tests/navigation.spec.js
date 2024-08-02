@@ -53,7 +53,7 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
 
     await page.waitForTimeout(2000)
 
-    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I').getAttribute('value');
+    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').getAttribute('value');
     expect(inputValue).toBe('E - Entrada');
 
     await page.waitForTimeout(2000)
@@ -87,7 +87,7 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
 
     await page.waitForTimeout(2000)
 
-    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I').getAttribute('value');
+    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').getAttribute('value');
     expect(inputValue).toBe('S - Salida');
 
     await page.waitForTimeout(2000)
