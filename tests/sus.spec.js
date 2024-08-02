@@ -53,6 +53,11 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
 
     await page.waitForTimeout(2000)
 
+    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I').getAttribute('value');
+    expect(inputValue).toBe('E - Entrada');
+
+    await page.waitForTimeout(2000)
+
     await page.locator('xpath=//div[@id="master_pnlContenido_btnFichar"]').click();
     await page.waitForTimeout(10000)
     await page.screenshot({ path: 'screenshot.png' });
@@ -78,7 +83,12 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
-    await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI0T0"]').click()
+    await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI6T0"]').click()
+
+    await page.waitForTimeout(2000)
+
+    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I').getAttribute('value');
+    expect(inputValue).toBe('S - Salida');
 
     await page.waitForTimeout(2000)
 
