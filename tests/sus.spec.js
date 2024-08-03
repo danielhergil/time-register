@@ -49,7 +49,9 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
-    await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI0T0"]').click()
+
+    await page.waitForSelector('xpath=//td[contains(text(), "E - Entrada")]');
+    await page.locator('xpath=//td[contains(text(), "E - Entrada")]').click();
 
     await page.waitForTimeout(2000)
 
@@ -83,7 +85,9 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
-    await page.locator('xpath=//td[@id="master_pnlContenido_cmbMotivoFichaje_DDD_L_LBI6T0"]').click()
+    
+    await page.waitForSelector('xpath=//td[contains(text(), "S - Salida")]');
+    await page.locator('xpath=//td[contains(text(), "S - Salida")]').click();
 
     await page.waitForTimeout(2000)
 
