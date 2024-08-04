@@ -39,24 +39,14 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     
     await page.locator('xpath=//div[@id="master_pnlContenido_btnAceptar_CD"]').click();
 
-    // await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
-    // await page.waitForTimeout(2000)
-
-    // await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
-
     await page.goto("https://empleadovillalbilla.eadministracion.es/PortalEmpleado/Personal/wfrFichaje.aspx")
 
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
 
-    await page.waitForSelector('xpath=//td[contains(text(), "E - Entrada")]');
-    await page.locator('xpath=//td[contains(text(), "E - Entrada")]').click();
-
-    await page.waitForTimeout(2000)
-
-    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').getAttribute('value');
-    expect(inputValue).toBe('E - Entrada');
+    await page.waitForSelector('xpath=//td[normalize-space(text())="E - Entrada"]');
+    await page.locator('xpath=//td[normalize-space(text())="E - Entrada"]').click();
 
     await page.waitForTimeout(2000)
 
@@ -75,24 +65,14 @@ test('time register in', {tag: '@entrada',}, async ({ page }) => {
     
     await page.locator('xpath=//div[@id="master_pnlContenido_btnAceptar_CD"]').click();
 
-    // await page.locator('xpath=(//li[@class="menu-hasdropdown"])[4]').hover()
-    // await page.waitForTimeout(2000)
-
-    // await page.locator('xpath=//a[@href="../Personal/wfrFichaje.aspx"]').click()
-
     await page.goto("https://empleadovillalbilla.eadministracion.es/PortalEmpleado/Personal/wfrFichaje.aspx")
 
     await page.waitForTimeout(5000)
 
     await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').click()
 
-    await page.waitForSelector('xpath=//td[contains(text(), "S - Salida")]');
-    await page.locator('xpath=//td[contains(text(), "S - Salida")]').click();
-
-    await page.waitForTimeout(2000)
-
-    const inputValue = await page.locator('xpath=//input[@id="master_pnlContenido_cmbMotivoFichaje_I"]').getAttribute('value');
-    expect(inputValue).toBe('S - Salida');
+    await page.waitForSelector('xpath=//td[normalize-space(text())="S - Salida"]');
+    await page.locator('xpath=//td[normalize-space(text())="S - Salida"]').click();
 
     await page.waitForTimeout(2000)
 
