@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'entrada - salida'
+        description: "entrada - salida"
 
 jobs:
   time-register:
@@ -13,44 +13,44 @@ jobs:
       POL_SUS_USER: ${{ secrets.POL_SUS_USER }}
       POL_SUS_PASS: ${{ secrets.POL_SUS_PASS }}
     steps:
-    - name: Checkout time-register
-      uses: actions/checkout@v4
+      - name: Checkout time-register
+        uses: actions/checkout@v4
 
-    - name: Use Node 18
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright Browsers
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test sus.spec.js --grep ${{ inputs.tag }}
+      - name: Use Node 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+      - name: Run Playwright tests
+        run: npx playwright test sus.spec.js --grep ${{ inputs.tag }}
 
-    - name: Get current time
-      uses: josStorer/get-current-time@v2
-      id: current-time
-      with:
-        format: YYYYMMDD-HH
-        utcOffset: "+02:00"
+      - name: Get current time
+        uses: josStorer/get-current-time@v2
+        id: current-time
+        with:
+          format: YYYYMMDD-HH
+          utcOffset: "+02:00"
 
-    - name: Send email notification
-      uses: cinotify/github-action@main
-      with:
-        to: '${{ secrets.POL_SUS_EMAIL }}'
-        subject: 'Fichaje ${{ inputs.tag }} - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}'
-        body: 'Fichaje realizado correctamente.'
-        attachment: 'screenshot.png'
+      - name: Send email notification
+        uses: cinotify/github-action@main
+        with:
+          to: "${{ secrets.POL_SUS_NOTIFY_EMAIL }}"
+          subject: "Fichaje ${{ inputs.tag }} - ${{ steps.current-time.outputs.day }}/${{ steps.current-time.outputs.month }}/${{ steps.current-time.outputs.year }} - ${{ steps.current-time.outputs.hour }}:${{ steps.current-time.outputs.minute }}"
+          body: "Fichaje realizado correctamente."
+          attachment: "screenshot.png"
 
-    - name: Send Whatsapp Msg Success
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}'
-        method: 'GET'
-    
-    - name: Send Whatsapp Msg If Error
-      if: failure()
-      uses: fjogeleit/http-request-action@v1
-      with:
-        url: 'https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}'
-        method: 'GET'
+      - name: Send Whatsapp Msg Success
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=Fichaje+realizado+correctamente&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}"
+          method: "GET"
+
+      - name: Send Whatsapp Msg If Error
+        if: failure()
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://api.callmebot.com/whatsapp.php?phone=${{ secrets.POL_SUS_PHONE }}&text=ERROR+fichaje&apikey=${{ secrets.POL_SUS_WHAT_APIKEY }}"
+          method: "GET"
