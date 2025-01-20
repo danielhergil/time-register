@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/danielhergil/time-register#readme",
   "devDependencies": {
-    "@playwright/test": "^1.45.1",
+    "@playwright/test": "^1.42.1",
     "@types/node": "^20.11.28"
   },
   "dependencies": {
