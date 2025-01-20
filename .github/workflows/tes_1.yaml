@@ -1,0 +1,26 @@
+name: Time register test
+run-name: Time register test
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "entrada - salida"
+
+jobs:
+  time-register:
+    runs-on: ubuntu-latest
+    env:
+      POL_USER: ${{ secrets.POL_USER }}
+    steps:
+      - name: Checkout time-register
+        uses: actions/checkout@v4
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
