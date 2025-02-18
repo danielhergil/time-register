@@ -32,7 +32,7 @@ test("time register in", { tag: "@entrada" }, async ({ page }) => {
   await page.goto(
     "https://empleadovillalbilla.eadministracion.es/PortalEmpleadoV2/Menus/wfrBienvenida.aspx?param=MjgmMTcy&BORDE=S"
   );
-  await page.locator('xpath=//div[@id="btnSession_CD"]').click();
+  // await page.locator('xpath=//div[@id="btnSession_CD"]').click();
 
   await page
     .locator('xpath=//input[@id="master_pnlContenido_txtLogin_I"]')
@@ -64,7 +64,7 @@ test("time register exit", { tag: "@salida" }, async ({ page }) => {
   await page.goto(
     "https://empleadovillalbilla.eadministracion.es/PortalEmpleadoV2/Menus/wfrBienvenida.aspx?param=MjgmMTcy&BORDE=S"
   );
-  await page.locator('xpath=//div[@id="btnSession_CD"]').click();
+  // await page.locator('xpath=//div[@id="btnSession_CD"]').click();
 
   await page
     .locator('xpath=//input[@id="master_pnlContenido_txtLogin_I"]')
